@@ -2,9 +2,10 @@ package com.example.rest.restDemo.service;
 
 import com.example.rest.restDemo.entity.Item;
 import com.example.rest.restDemo.repository.ItemRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class ItemServiceImpl implements ItemService {
 
     private ItemRepository itemRepository;
