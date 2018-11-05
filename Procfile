@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes/com/example/rest/restDemo/RestDemoApplication
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* RestDemoApplication
