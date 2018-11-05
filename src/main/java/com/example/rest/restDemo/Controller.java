@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
-    @RequestMapping("/")
+    @RequestMapping("/item")
     public Item index(){
         return new Item("fredx", 22);
     }
