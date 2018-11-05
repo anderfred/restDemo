@@ -1,8 +1,12 @@
-package com.example.rest.restDemo;
+package com.example.rest.restDemo.entity;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Item {
-    String name;
-    int id;
+
+    private String name;
+    private int id;
 
     public Item(String name, int id) {
         this.name = name;
@@ -23,5 +27,16 @@ public class Item {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+    public Item() {
     }
 }
