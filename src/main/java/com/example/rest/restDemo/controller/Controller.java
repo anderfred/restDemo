@@ -26,7 +26,7 @@ public class Controller {
         this.itemService = itemService;
     }
 
-    @RequestMapping("/item")
+    @RequestMapping("/getItem")
     public Item item() {
         Item item = itemService.getByName("fredx").get();
         if (item != null) {
