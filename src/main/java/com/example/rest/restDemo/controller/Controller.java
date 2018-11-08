@@ -36,16 +36,16 @@ public class Controller {
         return null;
     }
 
-        @RequestMapping("/items")
-    public List<Item> items() {
+    @RequestMapping("/getItems")
+    public List<Item> getItems() {
         List<Item> list = new ArrayList<>();
         itemService.findAll().forEach(list::add);
-        logger.info("/items {}",list);
+        logger.info("/items {}", list);
         return list;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/save")
-    public void save(@RequestHeader(value="ID-TOKEN") String idToken) throws Exception {
+    public void save(@RequestHeader(value = "ID-TOKEN") String idToken) throws Exception {
         service.saveUser(idToken);
     }
 
