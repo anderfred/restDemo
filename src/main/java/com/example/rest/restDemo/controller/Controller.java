@@ -1,6 +1,7 @@
 package com.example.rest.restDemo.controller;
 
 import com.example.rest.restDemo.entity.Item;
+import com.example.rest.restDemo.exceptions.ItemNotFoundException;
 import com.example.rest.restDemo.service.ItemService;
 import com.example.rest.restDemo.service.UserService;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class Controller {
     @GetMapping("/items/{id}")
     public Item getItemById(@PathVariable Integer id) {
         if (itemService.findById(id).isPresent()) return itemService.findById(id).get();
-        else return null;
+        else throw new ItemNotFoundException(""+id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/save")
