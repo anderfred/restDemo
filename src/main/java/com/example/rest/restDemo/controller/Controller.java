@@ -23,16 +23,6 @@ public class Controller {
         this.itemService = itemService;
     }
 
-    @RequestMapping("/getItem")
-    public Item item() {
-        Item item = itemService.getByName("fredx").get();
-        if (item != null) {
-            logger.info("/item REST {}", item);
-            return item;
-        }
-        return null;
-    }
-
     @RequestMapping("/items")
     public List<Item> getItems() {
         List<Item> list = new ArrayList<>();
@@ -41,7 +31,7 @@ public class Controller {
         return list;
     }
 
-    @GetMapping("/getItem/{id}")
+    @GetMapping("/items/{id}")
     public Item getItemById(@PathVariable Integer id) {
         return itemService.findById(id).get();
     }
