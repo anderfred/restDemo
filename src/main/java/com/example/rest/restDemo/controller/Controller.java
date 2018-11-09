@@ -40,18 +40,20 @@ public class Controller {
     }
 
     @PutMapping("/items/{id}")
-    void replaceItem(@RequestBody Item newItem) {
+    public Item replaceItem(@RequestBody Item newItem) {
         if (itemService.findById(newItem.getId()).isPresent()) {
             Item item = itemService.findById(newItem.getId()).get();
             item.setName(newItem.getName());
             itemService.save(item);
+            return item;
         } else throw new ItemNotFoundException(newItem.getId());
     }
 
     @PostMapping("/items/{id}")
-    void createItem(@RequestBody Item item) {
+    public Item createItem(@RequestBody Item item) {
         if (!itemService.findById(item.getId()).isPresent()) {
             itemService.save(item);
+            return item;
         } else throw new AlreadyPresentException(item);
     }
 }
