@@ -33,7 +33,7 @@ public class Controller {
         return null;
     }
 
-    @RequestMapping("/getItems")
+    @RequestMapping("/items")
     public List<Item> getItems() {
         List<Item> list = new ArrayList<>();
         itemService.findAll().forEach(list::add);
