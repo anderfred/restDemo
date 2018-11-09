@@ -5,7 +5,6 @@ import com.example.rest.restDemo.service.ItemService;
 import com.example.rest.restDemo.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,11 +15,11 @@ public class Controller {
     private Logger logger = LoggerFactory.getLogger(Controller.class);
     private ItemService itemService;
 
-    @Autowired
-    UserService service;
+    private final UserService service;
 
-    public Controller(ItemService itemService) {
+    public Controller(ItemService itemService, UserService service) {
         this.itemService = itemService;
+        this.service = service;
     }
 
     @RequestMapping("/items")
@@ -33,7 +32,8 @@ public class Controller {
 
     @GetMapping("/items/{id}")
     public Item getItemById(@PathVariable Integer id) {
-        return itemService.findById(id).get();
+        if (itemService.findById(id).isPresent()) return itemService.findById(id).get();
+        else return null;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/save")
