@@ -1,7 +1,7 @@
 package com.example.rest.restDemo.exceptions;
 
 public class ItemNotFoundException extends RuntimeException {
-    public ItemNotFoundException(String message) {
-        super(message);
+    public ItemNotFoundException(int id) {
+        super("Item not found, id:" + id);
     }
 }

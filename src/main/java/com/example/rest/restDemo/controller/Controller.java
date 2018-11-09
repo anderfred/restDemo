@@ -33,13 +33,17 @@ public class Controller {
 
     @GetMapping("/items/{id}")
     public Item getItemById(@PathVariable Integer id) {
-        if (itemService.findById(id).isPresent()) return itemService.findById(id).get();
-        else throw new ItemNotFoundException(""+id);
+        return itemService.findById(id).
+                orElseThrow(() -> new ItemNotFoundException(id));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/user/save")
-    public void save(@RequestHeader(value = "ID-TOKEN") String idToken) throws Exception {
-        service.saveUser(idToken);
+    @PutMapping("/items/{id}")
+    Item replaceItem(@RequestBody Item newItem) {
+        return itemService.findById(newItem.getId())
+                .map(employee -> {
+                    employee.setName(newItem.getName());
+                    return itemService.save(employee);
+                })
+                .orElseGet(() -> itemService.save(newItem));
     }
-
 }
