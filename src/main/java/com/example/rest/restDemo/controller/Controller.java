@@ -39,11 +39,6 @@ public class Controller {
 
     @PutMapping("/items/{id}")
     Item replaceItem(@RequestBody Item newItem) {
-        return itemService.findById(newItem.getId())
-                .map(employee -> {
-                    employee.setName(newItem.getName());
-                    return itemService.save(employee);
-                })
-                .orElseGet(() -> itemService.save(newItem));
+        return itemService.save(newItem);
     }
 }
