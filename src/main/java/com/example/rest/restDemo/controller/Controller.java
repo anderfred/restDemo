@@ -39,7 +39,7 @@ public class Controller {
                 orElseThrow(() -> new ItemNotFoundException(id));
     }
 
-    @PutMapping("/items/{id}")
+    @PutMapping("/items")
     public Item replaceItem(@RequestBody Item newItem) {
         if (itemService.findById(newItem.getId()).isPresent()) {
             Item item = itemService.findById(newItem.getId()).get();
@@ -49,7 +49,7 @@ public class Controller {
         } else throw new ItemNotFoundException(newItem.getId());
     }
 
-    @PostMapping("/items/{id}")
+    @PostMapping("/items")
     public Item createItem(@RequestBody Item item) {
         if (!itemService.findById(item.getId()).isPresent()) {
             itemService.save(item);
